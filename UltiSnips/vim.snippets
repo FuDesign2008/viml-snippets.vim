@@ -1,0 +1,29 @@
+extends vim
+
+snippet plugin "create new vim plugin" b
+
+let s:isTesting = 0
+
+if !s:isTesting
+    if &compatible || exists('s:${1:plugin_name}_loaded')
+        finish
+    endif
+
+    let s:save_cpo = &cpoptions
+    set cpoptions&vim
+endif
+
+let s:$1_loaded = 1
+
+"TODO
+$0
+
+if !s:isTesting
+    let &cpoptions = s:save_cpo
+endif
+
+if s:isTesting
+    "TODO
+endif
+
+endsnippet
